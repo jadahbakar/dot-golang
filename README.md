@@ -82,7 +82,7 @@ To get a local copy up and running follow these simple example steps.
    ```
 3. Config pgpass
    ```sh
-   echo "localhost:5144:dot-amartha:dot-amartha:dot-amartha*144" >> ~/.pgpass
+   echo "localhost:5144:dot-golang:dot-golang:dot-golang*144" >> ~/.pgpass
    ```
 3. Restore db
    ```sh
@@ -110,13 +110,13 @@ To get a local copy up and running follow these simple example steps.
    ```   
 
 #### Docker
-1. Add short-amartha.com on /etc/hosts
+1. Add dot-golang.com on /etc/hosts
    ```sh
-   sudo echo "127.0.0.1 short-amartha.com" >> /etc/hosts
+   sudo echo "127.0.0.1 dot-golang.com" >> /etc/hosts
    ```
 2. Clone the repo
    ```sh
-   git clone https://github.com/jadahbakar/short-amartha.git
+   git clone https://github.com/jadahbakar/dot-golang.git
    ```
 3. Run it (it will create docker images and container with autoreload)
    ```sh
@@ -163,19 +163,19 @@ To get a local copy up and running follow these simple example steps.
 ├── go.sum
 ├── log
 │   ├── fiber.log
-│   └── short-amartha
+│   └── dot-golang
 ├── main.go
 ├── makefile
 ├── mocks
 │   └── Repository.go
 ├── repository
 │   └── postgres
-├── shorty
+├── siswa
 │   ├── handler.go
 │   ├── model.go
 │   ├── repository.go
 │   ├── service.go
-│   └── shorty.go
+│   └── siswa.go
 └── util
     ├── config
     ├── engine

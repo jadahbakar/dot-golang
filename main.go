@@ -2,10 +2,11 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/jadahbakar/dot-golang/repository/postgres"
-	"github.com/jadahbakar/dot-golang/shorty"
+	"github.com/jadahbakar/dot-golang/siswa"
 	"github.com/jadahbakar/dot-golang/util/config"
 	"github.com/jadahbakar/dot-golang/util/engine"
 	"github.com/jadahbakar/dot-golang/util/logger"
@@ -26,14 +27,14 @@ func main() {
 	}
 
 	log.Printf("defining database")
-	repository, err := postgres.NewPostgresRepository(context.Background(), config.Db.Url)
+	repository, err := postgres.NewRepository(context.Background(), config.Db.Url)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	service := shorty.NewService(repository)
+	service := siswa.NewService(repository)
 
-	rg := server.Group(config.App.URLGroup)
-	shorty.NewHandler(rg, service)
+	rg := server.Group(fmt.Sprintf("%s%s", config.App.URLGroup, config.App.URLVersion))
+	siswa.NewHandler(rg, service)
 
 	engine.StartFiberWithGracefulShutdown(server, config.App.Port)
 }

@@ -3,7 +3,7 @@ package logger
 import (
 	"fmt"
 
-	"github.com/jadahbakar/short-amartha/util/config"
+	"github.com/jadahbakar/dot-golang/util/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"

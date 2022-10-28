@@ -14,9 +14,9 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
-	"github.com/jadahbakar/short-amartha/util/config"
-	"github.com/jadahbakar/short-amartha/util/greet"
-	"github.com/jadahbakar/short-amartha/util/response"
+	"github.com/jadahbakar/dot-golang/util/config"
+	"github.com/jadahbakar/dot-golang/util/greet"
+	"github.com/jadahbakar/dot-golang/util/response"
 )
 
 var logFile *os.File
