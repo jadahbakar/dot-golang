@@ -31,15 +31,15 @@ func (s *service) UpdateBayar(bayar *Bayar) (int, error) {
 	return res, nil
 }
 
-func (s *service) FindById(nis string) (Bayar, error) {
+func (s *service) FindById(nis string) (BayarGet, error) {
 	res, err := s.repo.GetOneBayar(nis)
 	if err != nil {
-		return Bayar{}, err
+		return BayarGet{}, err
 	}
 	return res, nil
 }
 
-func (s *service) FindAllBayar() ([]Bayar, error) {
+func (s *service) FindAllBayar() ([]BayarGet, error) {
 	res, err := s.repo.GetAllBayar()
 	if err != nil {
 		return nil, err

@@ -99,3 +99,16 @@
 {"pid":2333, "timestamp":"2022/Oct/29 09:58:39", "status":200, "latency":"   11ms", "method":"GET", "path":"/api/v1/bayar"}
 {"pid":2333, "timestamp":"2022/Oct/29 09:59:50", "status":200, "latency":"   10ms", "method":"DELETE", "path":"/api/v1/bayar/1/1667011188"}
 {"pid":2333, "timestamp":"2022/Oct/29 09:59:54", "status":200, "latency":"    2ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":78, "timestamp":"2022/Oct/29 10:12:49", "status":500, "latency":"   51ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":78, "timestamp":"2022/Oct/29 10:12:53", "status":500, "latency":"    8ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":78, "timestamp":"2022/Oct/29 10:12:59", "status":500, "latency":"    8ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":153, "timestamp":"2022/Oct/29 10:14:43", "status":500, "latency":"   58ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":220, "timestamp":"2022/Oct/29 10:15:12", "status":200, "latency":"   79ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":220, "timestamp":"2022/Oct/29 10:15:24", "status":200, "latency":"    1ms", "method":"GET", "path":"/api/v1/siswa"}
+{"pid":220, "timestamp":"2022/Oct/29 10:15:39", "status":200, "latency":"    6ms", "method":"PUT", "path":"/api/v1/siswa/3"}
+{"pid":220, "timestamp":"2022/Oct/29 10:15:42", "status":200, "latency":"    1ms", "method":"GET", "path":"/api/v1/siswa"}
+{"pid":220, "timestamp":"2022/Oct/29 10:15:45", "status":200, "latency":"    2ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":277, "timestamp":"2022/Oct/29 10:17:33", "status":200, "latency":"  193ms", "method":"PUT", "path":"/api/v1/siswa/1"}
+{"pid":277, "timestamp":"2022/Oct/29 10:17:40", "status":200, "latency":"    7ms", "method":"GET", "path":"/api/v1/bayar"}
+{"pid":277, "timestamp":"2022/Oct/29 10:17:48", "status":200, "latency":"    1ms", "method":"GET", "path":"/api/v1/siswa"}
+{"pid":277, "timestamp":"2022/Oct/29 10:17:58", "status":200, "latency":"    4ms", "method":"PUT", "path":"/api/v1/siswa/3"}

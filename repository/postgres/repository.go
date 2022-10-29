@@ -137,30 +137,30 @@ func (r *pgRepository) PutBayar(b *bayar.Bayar) (int, error) {
 	return int(res.RowsAffected()), nil
 }
 
-func (r *pgRepository) GetOneBayar(nis string) (bayar.Bayar, error) {
+func (r *pgRepository) GetOneBayar(nis string) (bayar.BayarGet, error) {
 	ctx := context.Background()
-	var t bayar.Bayar
-	query := fmt.Sprintf(`SELECT nis, idbayar, tanggal, nominal FROM mst.bayar WHERE nis = '%s'`, nis)
-	err := r.db.QueryRow(ctx, query).Scan(&t.Nis, &t.IdBayar, &t.Tanggal, &t.Nominal)
+	var t bayar.BayarGet
+	query := fmt.Sprintf(`SELECT b.nis, nama, idbayar, tanggal, nominal FROM mst.bayar b INNER JOIN mst.siswa s ON b.nis = s.nis WHERE nis = '%s'`, nis)
+	err := r.db.QueryRow(ctx, query).Scan(&t.Nis, &t.Nama, &t.IdBayar, &t.Tanggal, &t.Nominal)
 	if err != nil {
 		logger.Errorf("repo:%v", err)
-		return bayar.Bayar{}, err
+		return bayar.BayarGet{}, err
 	}
 	return t, nil
 }
 
-func (r *pgRepository) GetAllBayar() ([]bayar.Bayar, error) {
+func (r *pgRepository) GetAllBayar() ([]bayar.BayarGet, error) {
 	ctx := context.Background()
-	result := make([]bayar.Bayar, 0)
-	t := bayar.Bayar{}
-	query := `SELECT nis, idbayar, tanggal, nominal FROM mst.bayar`
+	result := make([]bayar.BayarGet, 0)
+	t := bayar.BayarGet{}
+	query := `SELECT b.nis, nama, idbayar, tanggal, nominal FROM mst.bayar b INNER JOIN mst.siswa s ON b.nis = s.nis`
 	rows, err := r.db.Query(ctx, query)
 	if err != nil {
 		logger.Errorf("repo:%v", err)
 		return nil, err
 	}
 	for rows.Next() {
-		err = rows.Scan(&t.Nis, &t.IdBayar, &t.Tanggal, &t.Nominal)
+		err = rows.Scan(&t.Nis, &t.Nama, &t.IdBayar, &t.Tanggal, &t.Nominal)
 		if err != nil {
 			return nil, err
 		}
