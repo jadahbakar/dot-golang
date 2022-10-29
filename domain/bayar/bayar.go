@@ -1,16 +1,26 @@
 package bayar
 
-import "time"
+import (
+	"time"
+
+	"github.com/jadahbakar/dot-golang/domain/siswa"
+)
 
 type service struct {
-	repo Repository
+	repo      Repository
+	siswaRepo siswa.Repository
 }
 
-func NewService(r Repository) Service {
-	return &service{repo: r}
+func NewService(r Repository, s siswa.Repository) Service {
+	return &service{repo: r, siswaRepo: s}
 }
 
 func (s *service) PostBayar(bayar *Bayar) (string, error) {
+	siswa, err := s.siswaRepo.GetOneSiswa(bayar.Nis)
+	if err != nil {
+		return "", err
+	}
+	bayar.Nis = siswa.Nis
 	bayar.Tanggal = time.Now().Format(time.RFC3339)
 	if bayar.IdBayar == 0 {
 		bayar.IdBayar = time.Now().Unix()

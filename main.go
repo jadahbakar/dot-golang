@@ -33,7 +33,7 @@ func main() {
 		log.Fatalf(err.Error())
 	}
 	siswaService := siswa.NewService(siswaRepo)
-	bayarService := bayar.NewService(bayarRepo)
+	bayarService := bayar.NewService(bayarRepo, siswaRepo)
 
 	rg := server.Group(fmt.Sprintf("%s%s", config.App.URLGroup, config.App.URLVersion))
 	siswa.NewHandler(rg, siswaService)

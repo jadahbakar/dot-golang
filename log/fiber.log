@@ -112,3 +112,8 @@
 {"pid":277, "timestamp":"2022/Oct/29 10:17:40", "status":200, "latency":"    7ms", "method":"GET", "path":"/api/v1/bayar"}
 {"pid":277, "timestamp":"2022/Oct/29 10:17:48", "status":200, "latency":"    1ms", "method":"GET", "path":"/api/v1/siswa"}
 {"pid":277, "timestamp":"2022/Oct/29 10:17:58", "status":200, "latency":"    4ms", "method":"PUT", "path":"/api/v1/siswa/3"}
+{"pid":76, "timestamp":"2022/Oct/29 15:01:02", "status":500, "latency":"  375ms", "method":"POST", "path":"/api/v1/bayar"}
+{"pid":76, "timestamp":"2022/Oct/29 15:01:57", "status":503, "latency":"    6ms", "method":"GET", "path":"/api/v1/siswa/444"}
+{"pid":218, "timestamp":"2022/Oct/29 15:08:30", "status":503, "latency":"   78ms", "method":"POST", "path":"/api/v1/bayar"}
+{"pid":334, "timestamp":"2022/Oct/29 15:11:55", "status":200, "latency":"   61ms", "method":"POST", "path":"/api/v1/bayar"}
+{"pid":392, "timestamp":"2022/Oct/29 15:12:49", "status":200, "latency":"   37ms", "method":"PUT", "path":"/api/v1/bayar"}

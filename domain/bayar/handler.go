@@ -2,6 +2,7 @@ package bayar
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jadahbakar/dot-golang/util/logger"
@@ -29,6 +30,9 @@ func (h *Handler) Post(c *fiber.Ctx) error {
 	}
 	id, err := h.service.PostBayar(b)
 	if err != nil {
+		if strings.Contains(err.Error(), "no rows") {
+			return response.NoRowsInResultSet(c, err.Error())
+		}
 		return response.HandleErrors(c, err)
 	}
 	return response.NewSuccess(c, fiber.StatusOK, "Post", id)
