@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/jadahbakar/dot-golang/domain/bayar"
+	"github.com/jadahbakar/dot-golang/domain/siswa"
 	"github.com/jadahbakar/dot-golang/repository/postgres"
-	"github.com/jadahbakar/dot-golang/siswa"
 	"github.com/jadahbakar/dot-golang/util/config"
 	"github.com/jadahbakar/dot-golang/util/engine"
 	"github.com/jadahbakar/dot-golang/util/logger"
@@ -27,14 +28,16 @@ func main() {
 	}
 
 	log.Printf("defining database")
-	repository, err := postgres.NewRepository(context.Background(), config.Db.Url)
+	siswaRepo, bayarRepo, err := postgres.NewRepository(context.Background(), config.Db.Url)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	service := siswa.NewService(repository)
+	siswaService := siswa.NewService(siswaRepo)
+	bayarService := bayar.NewService(bayarRepo)
 
 	rg := server.Group(fmt.Sprintf("%s%s", config.App.URLGroup, config.App.URLVersion))
-	siswa.NewHandler(rg, service)
+	siswa.NewHandler(rg, siswaService)
+	bayar.NewHandler(rg, bayarService)
 
 	engine.StartFiberWithGracefulShutdown(server, config.App.Port)
 }

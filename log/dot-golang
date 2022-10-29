@@ -1,4 +1,1 @@
 
-{"level":"error","ts":"2022-10-28T03:55:06.993Z","caller":"postgres/repository.go:54","msg":"<nil>"}
-{"level":"error","ts":"2022-10-28T03:58:28.713Z","caller":"postgres/repository.go:101","msg":"ERROR: operator does not exist: text = integer (SQLSTATE 42883)"}
-{"level":"error","ts":"2022-10-28T03:58:28.729Z","caller":"siswa/handler.go:84","msg":"ERROR: operator does not exist: text = integer (SQLSTATE 42883)"}
