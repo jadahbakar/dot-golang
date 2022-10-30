@@ -126,21 +126,7 @@ To get a local copy up and running follow these simple example steps.
 
     ![running](assets/images/docker-capture.png)
 
-5. Testing it on postman:
-
-    Post :
-
-    ![postman-post](assets/images/post-capture.png)
-
-    Get:
-
-    ![postman-get](assets/images/get-capture.png)
-
-    Stats:
-
-    ![postman-stat](assets/images/stats-capture.png)  
-
-6. Stop 
+5. Stop 
    ```sh
    make devel-down
    ```
@@ -156,32 +142,33 @@ To get a local copy up and running follow these simple example steps.
 ```sh
 .
 ├── README.md
+├── assets
+│   └── images
 ├── config.env
 ├── docker
 │   └── development
+├── domain
+│   ├── bayar
+│   └── siswa
 ├── go.mod
 ├── go.sum
 ├── log
-│   ├── fiber.log
-│   └── dot-golang
+│   ├── dot-golang
+│   └── fiber.log
 ├── main.go
 ├── makefile
-├── mocks
-│   └── Repository.go
 ├── repository
 │   └── postgres
-├── siswa
-│   ├── handler.go
-│   ├── model.go
-│   ├── repository.go
-│   ├── service.go
-│   └── siswa.go
+├── tmp
+│   ├── build-errors.log
+│   └── main
 └── util
     ├── config
     ├── engine
-    ├── generate
     ├── greet
     ├── logger
     └── response
+
+17 directories, 10 files
 ```
 
