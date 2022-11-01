@@ -1,49 +1,51 @@
 package cache
 
 import (
-	"errors"
+	"context"
+	"crypto/tls"
 	"net/url"
+	"strings"
 
-	"github.com/go-redis/redis/v9"
-	"github.com/jadahbakar/dot-golang/domain/bayar"
-	"github.com/jadahbakar/dot-golang/domain/siswa"
+	"github.com/go-redis/redis/extra/redisotel"
+	redis "github.com/go-redis/redis/v9"
 )
 
-type redisRepository struct {
-	cache *redis.Client
+// ---- redis
+const defaultNS = "redis"
+
+// Cache redis cache object
+type Cache struct {
+	client        *redis.Client
+	ns            string
+	clusterClient *redis.ClusterClient
 }
 
-type InitFunc func(url *url.URL) (*redis.Client, error)
+func newRedisClient(uri *url.URL) (*redis.Client, error) {
+	p, _ := url.User.Password()
+	opt := &redis.Options{
+		Addr:     url.Host,
+		Password: p,
+		DB:       0, //use default DB
+	}
+	if ts := url.Query().Get("tls"); ts != "" {
+		opt.TLSConfig = &tls.Config{
+			ServerName: ts,
+		}
+	}
+	rClient := redis.NewClient(opt)
+	rClient.AddHook(redisotel.TracingHook)
+	ns := strings.TrimPrefix(url.Path, "/")
+	if ns == "" {
+		ns = defaultNS
+	}
 
-var cacheImpl = make(map[string]InitFunc)
-
-func newClient(urlStr string) (*redis.Client, error) {
-	u, err := url.Parse(urlStr)
+	cache := &Cache{
+		client: rClient,
+		ns:     strings.TrimPrefix(url.Path, "/"),
+	}
+	_, err := cache.client.Ping(context.Background()).Result()
 	if err != nil {
 		return nil, err
 	}
-
-	f, ok := cacheImpl[u.Scheme]
-	if !ok {
-		return nil, errors.New("unsupported scheme")
-	}
-
-	return f(u)
-}
-
-func NewRedis(urlStr string) (siswa.Repository, bayar.Repository, error) {
-	drv, err := newClient(urlStr)
-	if err != nil {
-		return nil, nil, err
-	}
-	siswaRepo := &redisRepository{cache: drv}
-	bayarRepo := &redisRepository{cache: drv}
-	return siswaRepo, bayarRepo, nil
-}
-
-func (r *redisRepository) GetAllSiswa(nis string) (siswa.Siswa, error) {  {
-
-	r, err:= r.cache.Get(ctx, nis)
-	
-	return nil,nil
+	return cache, nil
 }
